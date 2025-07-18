@@ -2,16 +2,29 @@ import React, { Component } from 'react';
 import PortfolioItem from './portfolio-item';
 
 export default class PortfolioContainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      pageTitle: 'Welcome to my portfolio',
+      data: [
+        { title: 'Item 1' },
+        { title: 'Item 2' },
+        { title: 'Item 3' },
+        { title: 'Item 4' }
+      ]
+    };
+  }
+
   portfolioItems() {
-    const data = ['One', 'Two', 'Three', 'Four', 'Five'];
-    return data.map(item => {
-      return <PortfolioItem title={item} />;
+    return this.state.data.map(item => {
+      return <PortfolioItem title={item.title} />;
     });
   }
+
   render() {
     return (
       <div>
-        <h2>Portfolio items go here ...</h2>
+        <h2>{this.state.pageTitle}</h2>
         {this.portfolioItems()}
       </div>
     );
