@@ -7,10 +7,10 @@ export default class PortfolioContainer extends Component {
     this.state = {
       pageTitle: 'Welcome to my portfolio',
       data: [
-        { title: 'Item 1' },
-        { title: 'Item 2' },
-        { title: 'Item 3' },
-        { title: 'Item 4' }
+        { title: 'Olio', category: 'eCommerce' },
+        { title: 'Item 2', category: 'scheduling' },
+        { title: 'Item 3', category: 'enterprise' },
+        { title: 'Item 4', category: 'eCommerce' }
       ]
     };
 
@@ -29,15 +29,26 @@ export default class PortfolioContainer extends Component {
     });
   }
 
+  hendleFilter(filter) {
+    this.setState({
+      data: this.state.data.filter(item => {
+        return item.category === filter;
+      })
+    });
+  }
+
   render() {
     return (
       <div>
         <h2>{this.state.pageTitle}</h2>
+
+        <button onClick={() => this.hendleFilter('eCommerce')}>eCommerce</button>
+        <button onClick={() => this.hendleFilter('scheduling')}>scheduling</button>
+        <button onClick={() => this.hendleFilter('enterprise')}>enterprise</button>
+
         {this.portfolioItems()}
         <hr/>
-        <button onClick={() => this.hendlePageTitleUpdate()}>
-          Change Title
-        </button>
+        <button onClick={() => this.hendlePageTitleUpdate()}>Change Title</button>
       </div>
     );
   }
