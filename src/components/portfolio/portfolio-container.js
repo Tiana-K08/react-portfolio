@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PortfolioItem from './portfolio-item';
 
 export default class PortfolioContainer extends Component {
@@ -7,20 +8,28 @@ export default class PortfolioContainer extends Component {
     this.state = {
       pageTitle: 'Welcome to my portfolio',
       isLoading: false,
-      data: [
-        { title: 'Olio', category: 'eCommerce', slug: 'quip' },
-        { title: 'Item 2', category: 'scheduling', slug: 'eventbrite' },
-        { title: 'Item 3', category: 'enterprise', slug: 'ministry-safe' },
-        { title: 'Item 4', category: 'eCommerce', slug: 'swingaway' },
-      ]
+      data: []
     };
 
     // this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
   }
 
+  getPortfolioItems() {
+    axios.get('https://tetkononenko.devcamp.space/portfolio/portfolio_items')
+      .then(response => {
+        this.setState({
+          data: response.data.portfolio_items,
+          // isLoading: false
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   portfolioItems() {
     return this.state.data.map(item => {
-      return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug} />;
+      return <PortfolioItem title={item.name} url={item.url} slug={item.id} />;
     });
   }
 
@@ -38,10 +47,16 @@ export default class PortfolioContainer extends Component {
     });
   }
 
+  componentDidMount() {
+    this.getPortfolioItems();
+  }
+
   render() {
     if(this.state.isLoading) {
       return <div>Loading...</div>;
     }
+
+    this.getPortfolioItems();
 
     return (
       <div>
