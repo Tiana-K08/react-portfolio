@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 export default function(props) {
   const { id, description, thumb_image_url, logo } = props.item;
   return (
-    <div>
+    <div className="portfolio-item-wrapper">
       <img src={thumb_image_url} alt="bck image" />
       <img src={logo} alt="Logo" />
       <div>{description}</div>

@@ -72,7 +72,9 @@ export default class PortfolioContainer extends Component {
         <button onClick={() => this.hendleFilter('scheduling')}>scheduling</button>
         <button onClick={() => this.hendleFilter('enterprise')}>enterprise</button>
 
-        {this.portfolioItems()}
+        <div className="portfolio-items-wrapper">
+          {this.portfolioItems()}
+        </div>
         <hr/>
         <button onClick={() => this.hendlePageTitleUpdate()}>Change Title</button>
       </div>
