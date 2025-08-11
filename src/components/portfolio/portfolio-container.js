@@ -33,7 +33,6 @@ export default class PortfolioContainer extends Component {
       <PortfolioItem 
       key={item.id}
       item={item}
-      
       />
       );
     });
@@ -62,7 +61,7 @@ export default class PortfolioContainer extends Component {
       return <div>Loading...</div>;
     }
 
-    this.getPortfolioItems();
+    // this.getPortfolioItems(); ререндеринг компонента
 
     return (
       <div>

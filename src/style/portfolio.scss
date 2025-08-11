@@ -12,5 +12,40 @@
         height: 350px;
         width: 100%;
     }
+
+    .img-text-wrapper {
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+        padding-left: 160px;
+        padding-right: 160px;
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: transparent;
+            margin-top: 10px;
+            transition: 1s ease-in-out;
+        }
+
+        .logo-wrapper {
+            width: 50%;
+            margin-bottom: 20px;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    .img-text-wrapper:hover .subtitle {
+        color: $teal;
+        font-weight: 400;
+    }
   }
 }
