@@ -64,18 +64,12 @@ export default class PortfolioContainer extends Component {
     // this.getPortfolioItems(); ререндеринг компонента
 
     return (
-      <div>
-        <h2>{this.state.pageTitle}</h2>
+      <div className="portfolio-items-wrapper">
+        <button className="btn" onClick={() => this.hendleFilter('basic')}>eCommerce</button>
+        <button className="btn" onClick={() => this.hendleFilter('basic++')}>Scheduling</button>
+        <button className="btn" onClick={() => this.hendleFilter('mas')}>Enterprise</button>
 
-        <button onClick={() => this.hendleFilter('eCommerce')}>eCommerce</button>
-        <button onClick={() => this.hendleFilter('scheduling')}>scheduling</button>
-        <button onClick={() => this.hendleFilter('enterprise')}>enterprise</button>
-
-        <div className="portfolio-items-wrapper">
-          {this.portfolioItems()}
-        </div>
-        <hr/>
-        <button onClick={() => this.hendlePageTitleUpdate()}>Change Title</button>
+        {this.portfolioItems()}
       </div>
     );
   }
