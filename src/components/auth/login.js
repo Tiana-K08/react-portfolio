@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Login extends Component {
     constructor(props) {
@@ -13,11 +14,22 @@ export default class Login extends Component {
     };
 
     handleSubmit(event) {
-        console.log('Handle Submit', event);
+        axios.post('https://api.devcamp.space/sessions', {
+            client: {
+                email: this.state.email,
+                password: this.state.password
+            }
+        },
+        { withCredentials: true }
+        ).then(response => {
+            console.log('response', response);
+        })
+
+        event.preventDefault();
     }
 
     handleChange(event) {
-        console.log('Handle Change', event);
+        console.log('Handle Change', this.state.email, this.state.password);
         this.setState({
             [event.target.name]: event.target.value
         });
@@ -44,15 +56,14 @@ export default class Login extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                 />
+                <div>
+                    <button 
+                        type="submit" 
+                    >
+                        Login
+                    </button>
+                </div>
             </form>
-
-            <div>
-                <button 
-                    type="submit" 
-                >
-                    Login
-                </button>
-            </div>
         </div>
         );
     }
