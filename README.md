@@ -1,1 +1,1 @@
-# Tetiana Kononenko React Portfolio Application
+# React Portfolio Application
