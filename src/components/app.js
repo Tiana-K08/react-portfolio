@@ -47,30 +47,6 @@ export default class App extends Component {
         return loggedIn;
       } else if (!loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
         this.setState({
-          loggedInStatus: 'LOGGED_IN'
-        });
-      } else if (!loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
-        this.setState({
-          loggedInStatus: 'LOGGED_IN'
-        });
-      } else if (!loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
-        this.setState({
-          loggedInStatus: 'LOGGED_IN'
-        });
-      } else if (!loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
-        this.setState({
-          loggedInStatus: 'LOGGED_IN'
-        });
-      } else if (!loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
-        this.setState({
-          loggedInStatus: 'LOGGED_IN'
-        });
-      } else if (!loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
-        this.setState({
-          loggedInStatus: 'LOGGED_IN'
-        });
-      } else if (!loggedIn && loggedInStatus === 'NOT_LOGGED_IN') {
-        this.setState({
           loggedInStatus: 'NOT_LOGGED_IN'
         });
       }
@@ -82,6 +58,12 @@ export default class App extends Component {
 
   componentDidMount() {
     this.chackLoginStatus();
+  }
+
+  autorizedPages () {
+    return [
+      <Route path='/blog' component={Blog} />
+    ]
   }
 
   render() {
@@ -107,7 +89,7 @@ export default class App extends Component {
               />
               <Route path='/about-me' component={About} />
               <Route path='/contact' component={Contact} />
-              <Route path='/blog' component={Blog} />
+              {this.state.loggedInStatus === 'LOGGED_IN' ? this.autorizedPages() : null}
               <Route path='/portfolio/:slug' component={PortfolioDetail} />
               <Route component={NoMatch} />
             </Switch>
