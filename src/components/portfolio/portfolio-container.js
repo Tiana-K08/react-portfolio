@@ -15,7 +15,7 @@ export default class PortfolioContainer extends Component {
   }
 
   getPortfolioItems() {
-    axios.get('https://tetkononenko.devcamp.space/portfolio/portfolio_items')
+    axios.get('https://tetkononenko.devcamp.space/portfolio/portfolio_items', {withCredentials: true})
       .then(response => {
         this.setState({
           data: response.data.portfolio_items,
