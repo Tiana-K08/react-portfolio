@@ -15,7 +15,10 @@ export default class PortfolioManager extends Component {
     }
 
     handleSuccessfulFormSubmission(portfolioItem) {
-        //TODO: update the state with the new portfolio item
+        this.setState({
+            PortfolioItems: [portfolioItem].concat(this.state.PortfolioItems)
+
+    });
     }
 
     handleFailedFormSubmission(error) {
@@ -23,7 +26,7 @@ export default class PortfolioManager extends Component {
     }
 
     getPortfolioItems() {
-        axios.get('https://tetkononenko.devcamp.space/portfolio/portfolio_items', {
+        axios.get('https://tetkononenko.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc', {
             withCredentials: true,
         }).then(response => {
             this.setState({
