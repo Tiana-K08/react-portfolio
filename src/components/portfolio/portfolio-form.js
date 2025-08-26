@@ -27,6 +27,10 @@ export default class PortfolioForm extends Component {
         // this.handleThumbDrop = this.handleThumbDrop.bind(this);
         // this.handleBannerDrop = this.handleBannerDrop.bind(this);
         // this.handleLogoDrop = this.handleLogoDrop.bind(this);
+
+        this.thumbRef = React.createRef();
+        this.bannerRef = React.createRef();
+        this.logoRef = React.createRef();
     }
 
     handleThumbDrop() {
@@ -97,6 +101,21 @@ export default class PortfolioForm extends Component {
         ).then(response => {
             this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
             console.log("response", response);
+            this.setState({
+                name: '',
+                description: '',
+                category: 'eCommerce',
+                position: '',
+                url: '',
+                thumb_image: '',
+                banner_image: '',
+                logo: ''
+            });
+            [this.thumbRef, this.bannerRef, this.logoRef].forEach(ref => {
+                if (ref.current && ref.current.dropzone) {
+                ref.current.dropzone.removeAllFiles();
+    }
+            });
         }).catch(error => {
             console.log("portfolio form handleSubmit error", error);
         });
@@ -154,6 +173,7 @@ export default class PortfolioForm extends Component {
                     </div>
                     <div className="image-uploaders">
                         <DropzoneComponent 
+                            ref={this.thumbRef}
                             config={this.componentConfig()}
                             djsConfig={this.disConfig()}
                             eventHandlers={this.handleThumbDrop()}
@@ -161,6 +181,7 @@ export default class PortfolioForm extends Component {
                         </DropzoneComponent>
 
                         <DropzoneComponent 
+                            ref={this.bannerRef}
                             config={this.componentConfig()}
                             djsConfig={this.disConfig()}
                             eventHandlers={this.handleBannerDrop()}
@@ -168,6 +189,7 @@ export default class PortfolioForm extends Component {
                         </DropzoneComponent>
 
                         <DropzoneComponent 
+                            ref={this.logoRef}
                             config={this.componentConfig()}
                             djsConfig={this.disConfig()}
                             eventHandlers={this.handleLogoDrop()}
