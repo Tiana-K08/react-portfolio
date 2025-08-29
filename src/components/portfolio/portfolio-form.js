@@ -207,35 +207,50 @@ export default class PortfolioForm extends Component {
                     </div>
                     <div className="image-uploaders">
                         {/* {true ? 'do if true' : 'do if false'} */}
-                        {this.state.thumb_image && this.state.editMode ? 
-                        <img src={this.state.thumb_image} alt="thumb_image" /> : 
-                        <DropzoneComponent 
-                            ref={this.thumbRef}
-                            config={this.componentConfig()}
-                            djsConfig={this.disConfig()}
-                            eventHandlers={this.handleThumbDrop()}
-                        >
-                            <div className="dz-message">Thumbnail</div>
-                        </DropzoneComponent>
-                        }
-                        
-                        <DropzoneComponent 
-                            ref={this.bannerRef}
-                            config={this.componentConfig()}
-                            djsConfig={this.disConfig()}
-                            eventHandlers={this.handleBannerDrop()}
-                        >
-                            <div className="dz-message">Banner</div>
-                        </DropzoneComponent>
+                        {this.state.thumb_image && this.state.editMode ? (
+                            <div className="portfolio-manager-image-wrapper">
+                                <img src={this.state.thumb_image} alt="thumb_image" />
+                            </div> 
+                        ) : (
+                            <DropzoneComponent 
+                                ref={this.thumbRef}
+                                config={this.componentConfig()}
+                                djsConfig={this.disConfig()}
+                                eventHandlers={this.handleThumbDrop()}
+                            >
+                                <div className="dz-message">Thumbnail</div>
+                            </DropzoneComponent>
+                        )}
 
-                        <DropzoneComponent 
-                            ref={this.logoRef}
-                            config={this.componentConfig()}
-                            djsConfig={this.disConfig()}
-                            eventHandlers={this.handleLogoDrop()}
-                        >
-                            <div className="dz-message">Logo</div>
-                        </DropzoneComponent>
+                        {this.state.baner_image && this.state.editMode ? (
+                            <div className="portfolio-manager-image-wrapper">
+                                <img src={this.state.banner_image} alt="banner_image" />
+                            </div> 
+                        ) : (
+                            <DropzoneComponent 
+                                ref={this.bannerRef}
+                                config={this.componentConfig()}
+                                djsConfig={this.disConfig()}
+                                eventHandlers={this.handleBannerDrop()}
+                            >
+                                <div className="dz-message">Banner</div>
+                            </DropzoneComponent>
+                        )}
+
+                        {this.state.logo && this.state.editMode ? (
+                            <div className="portfolio-manager-image-wrapper">
+                                <img src={this.state.logo} alt="logo" />
+                            </div> 
+                        ) : (
+                            <DropzoneComponent 
+                                ref={this.logoRef}
+                                config={this.componentConfig()}
+                                djsConfig={this.disConfig()}
+                                eventHandlers={this.handleLogoDrop()}
+                            >
+                                <div className="dz-message">Logo</div>
+                            </DropzoneComponent>
+                        )}
                     </div>
                     <div>
                         <button className="btn" type="submit">Save</button>
