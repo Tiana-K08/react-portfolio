@@ -17,7 +17,10 @@ export default class PortfolioForm extends Component {
             url: '',
             thumb_image: '',
             banner_image: '',
-            logo: ''
+            logo: '',
+            editMode: false,
+            apiUrl: 'https://tetkononenko.devcamp.space/portfolio/portfolio_items',
+            apiAction: 'post'
         };
 
         // this.handleChange = this.handleChange.bind(this);
@@ -110,10 +113,13 @@ export default class PortfolioForm extends Component {
     }
 
     handleSubmit = (event) => {
-        axios.post('https://tetkononenko.devcamp.space/portfolio/portfolio_items', 
-            this.buildForm(), 
-            { withCredentials: true }
-        ).then(response => {
+        axios({
+            method: this.state.apiAction,
+            url: this.state.apiUrl,
+            data: this.buildForm(),
+            withCredentials: true
+        })
+        .then(response => {
             this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
             console.log("response", response);
             this.setState({
@@ -124,7 +130,10 @@ export default class PortfolioForm extends Component {
                 url: '',
                 thumb_image: '',
                 banner_image: '',
-                logo: ''
+                logo: '',
+                editMode: true,
+                apiUrl: `https://tetkononenko.devcamp.space/portfolio/portfolio_items/${id}`,
+                apiAction: 'patch'
             });
             [this.thumbRef, this.bannerRef, this.logoRef].forEach(ref => {
                 if (ref.current && ref.current.dropzone) {
