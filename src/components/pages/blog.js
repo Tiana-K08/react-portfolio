@@ -38,8 +38,10 @@ class Blog extends React.Component {
         });
 
         return (
-            <div>
-                {blogRecords}
+            <div className="blog-container">
+                <div className="content-container">
+                    {blogRecords}
+                </div>
             </div>
         );
     } 
