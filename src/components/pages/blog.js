@@ -12,6 +12,13 @@ class Blog extends React.Component {
         };
 
         // this.getBlogItems = this.getBlogItems.bind(this);
+        this.activateInfiniteScroll = this.activateInfiniteScroll.bind(this);
+    }
+
+    activateInfiniteScroll() {
+        window.onscroll = () => {
+            console.log("scrolling");
+        };
     }
 
     getBlogItems() {
@@ -25,9 +32,11 @@ class Blog extends React.Component {
                 console.log("getBlogItems error", error);
             });
     }
-
+    // componentWillMount() устарел и больше не рекомендуется к использованию,
+    // используйте componentDidMount()
     componentWillMount() {
         this.getBlogItems();
+        this.activateInfiniteScroll();
     }
 
     render() {
