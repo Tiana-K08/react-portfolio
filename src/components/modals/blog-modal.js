@@ -1,0 +1,17 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+
+export default class BlogModal extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return(
+            <Modal isOpen={true}>
+                <h1>I'm in a modal!</h1>
+            </Modal>
+        )
+    }
+}
