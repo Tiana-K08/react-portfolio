@@ -21,12 +21,16 @@ class Blog extends React.Component {
 
     activateInfiniteScroll() {
         window.onscroll = () => {
-            console.log("window.innerHeight", window.innerHeight);
-            console.log("document.documentElement.scrollTop", document.documentElement.scrollTop);
-            console.log("document.documentElement.offsetHeight", document.documentElement.offsetHeight);
+            // console.log("window.innerHeight", window.innerHeight);
+            // console.log("document.documentElement.scrollTop", document.documentElement.scrollTop);
+            // console.log("document.documentElement.offsetHeight", document.documentElement.offsetHeight);
             
+            if (this.state.isLoading || this.state.blogItems.lenght === this.state.totalCount) {
+                return;
+            }
+
             if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1) {
-            console.log("Get more posts");
+            this.getBlogItems();
             }
         };
 
@@ -36,10 +40,11 @@ class Blog extends React.Component {
     getBlogItems() {
         this.setState({ currentPage: this.state.currentPage + 1 });
 
-        axios.get('https://tetkononenko.devcamp.space/portfolio/portfolio_blogs', { withCredentials: true })
+        axios.get(`https://tetkononenko.devcamp.space/portfolio/portfolio_blogs?page=${this.state.currentPage}`, { withCredentials: true })
             .then(response => {
+                console.log("getting", response.data);
                 this.setState({
-                    blogItems: response.data.portfolio_blogs,
+                    blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
                     totalCount: response.data.meta.total_records,
                     isLoading: false
                 });
