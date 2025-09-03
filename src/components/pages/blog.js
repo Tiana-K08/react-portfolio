@@ -16,11 +16,11 @@ class Blog extends React.Component {
         };
 
         // this.getBlogItems = this.getBlogItems.bind(this);
-        this.activateInfiniteScroll = this.activateInfiniteScroll.bind(this);
+        this.onScroll = this.onScroll.bind(this);
+        window.addEventListener("scroll", this.onScroll, false);
     }
 
-    activateInfiniteScroll() {
-        window.onscroll = () => {
+    onScroll() {
             // console.log("window.innerHeight", window.innerHeight);
             // console.log("document.documentElement.scrollTop", document.documentElement.scrollTop);
             // console.log("document.documentElement.offsetHeight", document.documentElement.offsetHeight);
@@ -31,10 +31,7 @@ class Blog extends React.Component {
 
             if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1) {
             this.getBlogItems();
-            }
-        };
-
-        
+            } 
     }
 
     getBlogItems() {
@@ -55,9 +52,14 @@ class Blog extends React.Component {
     }
     // componentWillMount() устарел и больше не рекомендуется к использованию,
     // используйте componentDidMount()
+    
     componentWillMount() {
         this.getBlogItems();
-        this.activateInfiniteScroll();
+        // this.activateInfiniteScroll();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.onScroll, false);
     }
 
     render() {
