@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
+Modal.setAppElement('.app-wrapper');
+
 export default class BlogModal extends Component {
     constructor(props) {
         super(props);
