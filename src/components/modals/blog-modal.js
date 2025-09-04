@@ -9,7 +9,11 @@ export default class BlogModal extends Component {
 
     render() {
         return(
-            <Modal isOpen={this.props.modalIsOpen}>
+            <Modal 
+                onRequestClose={() => {
+                    this.props.handleModalClose();
+                }} 
+                isOpen={this.props.modalIsOpen}>
                 <h1>I'm in a modal!</h1>
             </Modal>
         )
