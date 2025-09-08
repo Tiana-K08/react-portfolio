@@ -41,9 +41,13 @@ export default class BlogDetail extends Component {
         <div className="blog-container">
             <div className="content-container">
                 <h1>{title}</h1>
+
+                {featured_image_url ?
                 <div className="featured-image-wrapper">
                     <img src={featured_image_url} />
-                </div>
+                </div> : null 
+                }
+
                 <div className="content">{ReactHtmlParser(content)}</div>
             </div>
         </div>
